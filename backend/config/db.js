@@ -1,12 +1,19 @@
 const mysql = require('mysql2');
-require('dotenv').config();
 
-const pool = mysql.createPool({
-    host: 'localhost',       // Same as HOST in Django settings
-    user: 'root',            // Same as USER in Django settings
-    password: 'vasu@1234',   // Same as PASSWORD in Django settings
-    database: 'Masonry',     // Same as NAME in Django settings
-    port: 3306               // Same as PORT in Django settings
+// Create a MySQL database connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'vasu@1234',
+  database: 'Masonry'
 });
 
-module.exports = pool.promise(); // Use the promise-based API for asynchronous operations
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+  } else {
+    console.log('Connected to the MySQL database');
+  }
+});
+
+module.exports = db;

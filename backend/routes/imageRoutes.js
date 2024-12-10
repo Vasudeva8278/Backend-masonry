@@ -1,14 +1,20 @@
 const express = require('express');
+const imageController = require('../controllers/imagecontroller');
 const router = express.Router();
-const imageController = require('../controllers/imageController');
 
-// POST: Add a new image
-router.post('/images', imageController.addImage);
+// Create image
+router.post('/images', imageController.createImage);
 
-// PUT: Update an existing image by ID
+// Get all images
+router.get('/images', imageController.getAllImages);
+
+// Get image by ID
+router.get('/images/:id', imageController.getImageById);
+
+// Update image by ID
 router.put('/images/:id', imageController.updateImage);
 
-// GET: Retrieve images with pagination
-router.get('/images', imageController.getImages);
+// Delete image by ID
+router.delete('/images/:id', imageController.deleteImage);
 
 module.exports = router;
