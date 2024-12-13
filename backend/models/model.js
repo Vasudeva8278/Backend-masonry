@@ -1,4 +1,3 @@
-// models/model.js
 const mongoose = require("mongoose");
 
 // Define the schema for Masonry
