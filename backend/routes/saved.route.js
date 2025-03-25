@@ -4,8 +4,8 @@ import verifyUser from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/add", verifyUser, addToSave);
-router.get("/:userId", verifyUser, getSave);
-router.delete("/:savedId", verifyUser, removeFromSave);
+router.post("/addsave", verifyUser, addToSave);
+router.get("/getsaves", verifyUser, getSave);
+router.delete("/:masonryId", verifyUser, removeFromSave);
 
 export default router;

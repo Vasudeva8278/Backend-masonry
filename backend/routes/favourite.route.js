@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post("/addfav", verifyUser, addFavourite);
 router.get("/getfav", verifyUser, getFavourites);
-router.delete("/:favouriteId", verifyUser, removeFromFavourite);
+router.delete("/:masonryId", verifyUser, removeFromFavourite); // Updated to use masonryId
 
 export default router;

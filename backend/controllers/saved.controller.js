@@ -28,8 +28,8 @@ export const addToSave = asyncHandler(async (req, res) => {
 });
 
 export const getSave = asyncHandler(async (req, res) => {
-    const { userId } = req.params;
-    console.log('Request params:', req.params); // Log the request params
+    const userId = req.user.id; // Use user ID from token
+    console.log('User ID:', userId); // Log the user ID
 
     try {
         const savedItems = await Saved.find({ user: userId }).populate('masonry');
@@ -42,11 +42,11 @@ export const getSave = asyncHandler(async (req, res) => {
 });
 
 export const removeFromSave = asyncHandler(async (req, res) => {
-    const { savedId } = req.params;
+    const { masonryId } = req.params;
     console.log('Request params:', req.params); // Log the request params
 
     try {
-        const savedItem = await Saved.findByIdAndDelete(savedId);
+        const savedItem = await Saved.findOneAndDelete({ masonry: masonryId, user: req.user.id });
         if (!savedItem) {
             return errorHandler(res, 'Saved item not found', 404);
         }

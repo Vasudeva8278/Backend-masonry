@@ -21,6 +21,8 @@ const savedSchema = new mongoose.Schema({
   }
 });
 
+savedSchema.index({ user: 1, masonry: 1 }, { unique: true });
+
 const Saved = mongoose.model("Saved", savedSchema);
 
 export default Saved;
